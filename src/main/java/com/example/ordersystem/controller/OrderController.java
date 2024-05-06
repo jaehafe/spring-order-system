@@ -3,6 +3,7 @@ package com.example.ordersystem.controller;
 import com.example.ordersystem.domain.create.CreateOrder;
 import com.example.ordersystem.service.OrderService;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -17,13 +18,13 @@ public class OrderController {
     }
 
     @PostMapping("/api/v1/orders")
-    public Response<Void> newOrder() {
-        HashMap<Integer, Integer> orderMap = new HashMap<>();
-        orderMap.put(1, 5);
-        orderMap.put(2, 10);
+    public Response<Void> newOrder(
+            @RequestBody NewOrderRequest request
+    ) {
         orderService.newOrder(CreateOrder.builder()
-                .customerId(1)
-                .quantityByProduct(orderMap)
+                .customerId(request.getCustomerId())
+                .storeId(request.getStoreId())
+                .quantityByProduct(request.getProducts())
                 .build());
 
         return Response.success(null);
