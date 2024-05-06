@@ -2,6 +2,7 @@ package com.example.ordersystem.service;
 
 import com.example.ordersystem.domain.create.CreateCustomer;
 import com.example.ordersystem.domain.Customer;
+import com.example.ordersystem.domain.dto.CustomerDto;
 import com.example.ordersystem.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,8 +16,13 @@ public class CustomerService {
     }
 
     @Transactional
-    public Customer newCustomer(CreateCustomer createCustomer) {
+    public CustomerDto newCustomer(CreateCustomer createCustomer) {
         Customer customer = Customer.newCustomer(createCustomer);
-        return customerRepository.save(customer);
+        Customer saved = customerRepository.save(customer);
+        return CustomerDto.builder()
+                .address(saved.getAddress())
+                .name(saved.getName())
+                .phoneNumber(saved.getPhoneNumber())
+                .build();
     }
 }

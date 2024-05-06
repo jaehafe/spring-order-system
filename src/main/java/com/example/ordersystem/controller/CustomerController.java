@@ -2,6 +2,7 @@ package com.example.ordersystem.controller;
 
 import com.example.ordersystem.domain.create.CreateCustomer;
 import com.example.ordersystem.domain.Customer;
+import com.example.ordersystem.domain.dto.CustomerDto;
 import com.example.ordersystem.service.CustomerService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,17 +17,17 @@ public class CustomerController {
     }
 
     @PostMapping("/api/v1/customers")
-    public Customer createNewCustomer(
+    public Response<CustomerDto> createNewCustomer(
             @RequestParam String name,
             @RequestParam String address,
             @RequestParam String phoneNumber
     ) {
-        return customerService.newCustomer(
+        return Response.success(customerService.newCustomer(
                 CreateCustomer.builder()
                         .address(address)
                         .name(name)
                         .phoneNumber(phoneNumber)
-                        .build()
+                        .build())
         );
     }
 }
