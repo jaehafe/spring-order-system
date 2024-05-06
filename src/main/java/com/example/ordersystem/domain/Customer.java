@@ -1,5 +1,6 @@
 package com.example.ordersystem.domain;
 
+import com.example.ordersystem.domain.create.CreateCustomer;
 import lombok.Getter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;

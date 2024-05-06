@@ -1,4 +1,4 @@
-package com.example.ordersystem.domain;
+package com.example.ordersystem.domain.create;
 
 import lombok.Builder;
 import lombok.Getter;

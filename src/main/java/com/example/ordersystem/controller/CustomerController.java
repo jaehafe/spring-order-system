@@ -1,6 +1,6 @@
 package com.example.ordersystem.controller;
 
-import com.example.ordersystem.domain.CreateCustomer;
+import com.example.ordersystem.domain.create.CreateCustomer;
 import com.example.ordersystem.domain.Customer;
 import com.example.ordersystem.service.CustomerService;
 import org.springframework.web.bind.annotation.PostMapping;
